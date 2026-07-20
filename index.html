@@ -3,19 +3,484 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nancy Katz — Coming Soon</title>
+<title>Nancy Katz, Ph.D. — Historian</title>
+<meta name="description" content="Nancy Katz, Ph.D. — Historian specializing in Atlantic World, Jewish and Sephardic history, U.S.–Mexico borderlands, and oral history.">
 <style>
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:#1c1817;color:#faf8f6;display:flex;align-items:center;justify-content:center;
-    min-height:100vh;text-align:center;}
-  h1{font-size:2rem;font-weight:800;margin:0 0 12px;}
-  p{color:#a89e97;margin:0;}
+  :root{
+    --navy:#1b2a3b;
+    --navy-2:#243447;
+    --accent:#b5813a;
+    --accent-light:#d4a45c;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --paper:#fafaf9;
+    --white:#ffffff;
+    --border:#e5e7eb;
+    --shadow:0 4px 20px rgba(27,42,59,0.08);
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--paper);
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:860px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(27,42,59,0.97);
+    backdrop-filter:blur(6px);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+  }
+  .brand{color:#e5ddd4;font-weight:700;font-size:1rem;letter-spacing:0.3px;}
+  nav.links{display:flex;align-items:center;gap:24px;}
+  nav.links a{
+    color:#b0a89e;font-size:0.88rem;font-weight:500;
+    transition:color .15s;
+  }
+  nav.links a:hover{color:var(--white);}
+  .nav-cta{
+    background:var(--accent);color:var(--white)!important;
+    padding:8px 16px;border-radius:7px;font-weight:600;
+  }
+  .nav-cta:hover{background:var(--accent-light);}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:var(--white);
+    padding:80px 0 88px;
+    text-align:center;
+  }
+  .hero .fields{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:0;
+    margin-bottom:22px;
+  }
+  .hero .fields span{
+    color:var(--accent-light);font-weight:600;letter-spacing:1.8px;
+    text-transform:uppercase;font-size:0.72rem;
+  }
+  .hero .fields span:not(:last-child)::after{
+    content:" | ";color:#5a7a9a;
+  }
+  .hero h1{
+    font-size:clamp(2rem,5vw,3rem);
+    line-height:1.1;margin:0 0 10px;font-weight:800;letter-spacing:-0.5px;
+  }
+  .hero .subtitle{
+    color:#9db4c8;font-size:1.05rem;margin:0 0 28px;
+  }
+  .hero-contact{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:20px;
+    font-size:0.92rem;color:#b0c4d4;
+  }
+  .hero-contact a{color:#b0c4d4;transition:color .15s;}
+  .hero-contact a:hover{color:var(--white);}
+  .hero-contact span::before{content:"·";margin-right:20px;color:#3d5a73;}
+
+  /* SECTIONS */
+  .cv-section{padding:56px 0;border-bottom:1px solid var(--border);}
+  .cv-section:last-child{border-bottom:none;}
+  .section-label{
+    text-transform:uppercase;letter-spacing:2px;font-size:0.72rem;
+    font-weight:700;color:var(--accent);margin-bottom:20px;
+  }
+
+  /* INTERESTS */
+  .interests-text{
+    font-size:1.05rem;color:var(--muted);font-style:italic;line-height:1.8;
+  }
+
+  /* EDUCATION */
+  .edu-entry{margin-bottom:24px;}
+  .edu-entry:last-child{margin-bottom:0;}
+  .edu-degree{font-weight:700;font-size:1.05rem;margin:0 0 2px;}
+  .edu-school{color:var(--muted);font-size:0.95rem;margin:0 0 4px;}
+  .edu-fields{color:var(--muted);font-size:0.9rem;font-style:italic;margin:0;}
+  .edu-year{float:right;color:var(--accent);font-weight:600;font-size:0.95rem;}
+
+  /* APPOINTMENTS */
+  .appt-entry{margin-bottom:32px;}
+  .appt-entry:last-child{margin-bottom:0;}
+  .appt-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px;margin-bottom:4px;}
+  .appt-title{font-weight:700;font-size:1.02rem;}
+  .appt-date{color:var(--accent);font-weight:600;font-size:0.9rem;white-space:nowrap;}
+  .appt-org{color:var(--muted);font-size:0.92rem;margin-bottom:8px;}
+  .appt-bullets{margin:0;padding-left:18px;}
+  .appt-bullets li{margin-bottom:6px;font-size:0.96rem;color:var(--text);}
+
+  /* PUBLICATION */
+  .pub-entry{
+    background:var(--white);border:1px solid var(--border);border-left:4px solid var(--accent);
+    border-radius:0 var(--radius) var(--radius) 0;padding:18px 20px;
+    box-shadow:var(--shadow);font-size:0.97rem;
+  }
+
+  /* DISSERTATION */
+  .diss-box{
+    background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);
+  }
+  .diss-title{font-weight:700;font-size:1.08rem;font-style:italic;margin:0 0 6px;}
+  .diss-advisor{color:var(--muted);font-size:0.88rem;margin:0 0 14px;}
+  .diss-desc{color:var(--muted);font-size:0.97rem;margin:0;line-height:1.75;}
+
+  /* CONFERENCES */
+  .conf-entry{
+    padding:14px 0;border-bottom:1px solid var(--border);
+    font-size:0.96rem;
+  }
+  .conf-entry:last-child{border-bottom:none;}
+  .conf-title{font-style:italic;margin:0 0 3px;}
+  .conf-venue{color:var(--muted);font-size:0.88rem;margin:0;}
+
+  /* AWARDS */
+  .award-entry{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 0;border-bottom:1px solid var(--border);gap:16px;
+    font-size:0.96rem;
+  }
+  .award-entry:last-child{border-bottom:none;}
+  .award-name{flex:1;}
+  .award-year{color:var(--accent);font-weight:600;white-space:nowrap;}
+
+  /* ARCHIVAL */
+  .archive-entry{margin-bottom:16px;}
+  .archive-entry:last-child{margin-bottom:0;}
+  .archive-region{font-weight:700;font-size:0.92rem;margin:0 0 3px;}
+  .archive-list{color:var(--muted);font-size:0.92rem;margin:0;}
+
+  /* TEACHING FIELDS */
+  .fields-list{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .field-tag{
+    background:var(--white);border:1px solid var(--border);border-radius:6px;
+    padding:7px 14px;font-size:0.88rem;color:var(--text);
+    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* SKILLS */
+  .skill-group{margin-bottom:16px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-label{font-weight:700;font-size:0.9rem;margin:0 0 3px;}
+  .skill-items{color:var(--muted);font-size:0.93rem;margin:0;}
+
+  /* FOOTER */
+  footer{
+    background:var(--navy);color:#7a9ab4;
+    padding:28px 0;text-align:center;font-size:0.88rem;
+  }
+  footer a{color:var(--accent-light);}
+
+  @media(max-width:640px){
+    nav.links{display:none;}
+    .hero{padding:56px 0 64px;}
+    .appt-header{flex-direction:column;gap:2px;}
+    .award-entry{flex-direction:column;gap:2px;}
+  }
 </style>
 </head>
 <body>
-  <div>
-    <h1>Nancy Katz, Ph.D.</h1>
-    <p>Site coming soon.</p>
+
+<header>
+  <div class="container nav">
+    <span class="brand">Nancy Katz, Ph.D.</span>
+    <nav class="links">
+      <a href="#research">Research</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
   </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="fields">
+      <span>Atlantic World</span>
+      <span>Jewish History</span>
+      <span>Borderlands</span>
+      <span>Oral History</span>
+    </div>
+    <h1>Nancy Katz, Ph.D.</h1>
+    <p class="subtitle">Historian — University of Houston</p>
+    <div class="hero-contact">
+      <a href="mailto:nlkatz@cougarnet.uh.edu">nlkatz@cougarnet.uh.edu</a>
+      <span><a href="mailto:nancy@comkatz.com">nancy@comkatz.com</a></span>
+      <span><a href="tel:+12816390167">(281) 639-0167</a></span>
+      <span>Huntsville, Texas</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH & TEACHING INTERESTS -->
+<section class="cv-section" id="research">
+  <div class="container">
+    <div class="section-label">Research &amp; Teaching Interests</div>
+    <p class="interests-text">Atlantic World history; Jewish and Sephardic history; Iberian empires and colonialism; migration and diaspora; religion, memory, and identity; U.S.–Mexico borderlands; oral history and public history.</p>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="cv-section" id="education">
+  <div class="container">
+    <div class="section-label">Education</div>
+
+    <div class="edu-entry">
+      <div class="edu-degree"><span class="edu-year">Summer 2026</span>Ph.D. in History</div>
+      <div class="edu-school">University of Houston, Houston, Texas</div>
+      <p class="edu-fields">Primary field: Colonial Atlantic World &nbsp;|&nbsp; Secondary fields: Jewish History; U.S. History</p>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-degree"><span class="edu-year">2021</span>B.A. in History, <em>summa cum laude</em></div>
+      <div class="edu-school">University of Houston, Houston, Texas</div>
+      <p class="edu-fields">Minors: Classical Studies, Jewish Studies, and Religious Studies</p>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-degree"><span class="edu-year">2018</span>A.A. in History, Highest Honors in Research</div>
+      <div class="edu-school">Lone Star College, Texas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMIC APPOINTMENTS -->
+<section class="cv-section" id="teaching">
+  <div class="container">
+    <div class="section-label">Academic Appointments</div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Instructor, The Human Situation</span>
+        <span class="appt-date">Fall 2026</span>
+      </div>
+      <div class="appt-org">Honors College, University of Houston</div>
+      <ul class="appt-bullets">
+        <li>Teach in an interdisciplinary humanities sequence emphasizing close reading, historical context, discussion, and analytical writing.</li>
+      </ul>
+    </div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Adjunct Instructor, Department of History</span>
+        <span class="appt-date">Fall 2026</span>
+      </div>
+      <div class="appt-org">University of Houston</div>
+      <ul class="appt-bullets">
+        <li>Instructor of record for three asynchronous sections of HIST 1301: The United States to 1877.</li>
+        <li>Designed a fifteen-week online course using original lectures, primary-source analysis, weekly historical argument exercises, and scaffolded writing assignments.</li>
+      </ul>
+    </div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Teaching Assistant / Lab Instructor, Department of History</span>
+        <span class="appt-date">Aug. 2020–May 2025</span>
+      </div>
+      <div class="appt-org">University of Houston</div>
+      <ul class="appt-bullets">
+        <li>Supported HIST 1301 and HIST 1302 in face-to-face and online formats; led discussion sections, delivered lectures, graded coursework, and mentored students.</li>
+        <li>Integrated migration, religion, race, citizenship, and transatlantic context into U.S. history survey instruction.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="cv-section" id="publications">
+  <div class="container">
+    <div class="section-label">Publications</div>
+    <div class="pub-entry">
+      Katz, Nancy. "Listening for What Was Never Said: Oral History and Crypto-Jewish Memory in the Borderlands." <em>HaLapid</em> (Spring 2026).
+    </div>
+  </div>
+</section>
+
+<!-- DISSERTATION -->
+<section class="cv-section" id="dissertation">
+  <div class="container">
+    <div class="section-label">Dissertation</div>
+    <div class="diss-box">
+      <p class="diss-title">The Memory of Being Hidden: Crypto-Jewish Identity in the Twentieth-Century U.S.–Mexico Borderlands</p>
+      <p class="diss-advisor">Dissertation advisor: Mark Goldberg</p>
+      <p class="diss-desc">Traces how descendants of Iberian and colonial conversos preserved, reinterpreted, and publicly articulated Jewish memory across the modern U.S.–Mexico borderlands. Drawing on oral histories and archival research in Texas, New Mexico, and California, the project connects twentieth-century identity formation to longer histories of Sephardic diaspora, Atlantic migration, colonial religious regulation, domestic practice, and communal memory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCE PRESENTATIONS -->
+<section class="cv-section" id="conferences">
+  <div class="container">
+    <div class="section-label">Conference Presentations</div>
+
+    <div class="conf-entry">
+      <p class="conf-title">"Hidden in Plain Sight: Crypto-Jewish Communities and the Negotiation of Identity in the Twentieth-Century Texas–Northern Mexico Borderlands."</p>
+      <p class="conf-venue">Texas A&amp;M University, 2026</p>
+    </div>
+
+    <div class="conf-entry">
+      <p class="conf-title">"Hidden Voices: Oral History, Identity, and Crypto-Jewish Memory in the Borderlands."</p>
+      <p class="conf-venue">Society for Crypto-Judaic Studies Annual Conference, Los Angeles, 2025</p>
+    </div>
+
+    <div class="conf-entry">
+      <p class="conf-title">"Crypto-Jewish Space in the Texas Borderlands."</p>
+      <p class="conf-venue">Southern Jewish Historical Society Annual Conference, 2023</p>
+    </div>
+
+    <div class="conf-entry">
+      <p class="conf-title">"The Crypto-Jewish Memory of Being Hidden."</p>
+      <p class="conf-venue">Western Jewish Studies Association Conference, 2023</p>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="cv-section" id="awards">
+  <div class="container">
+    <div class="section-label">Awards &amp; Fellowships</div>
+
+    <div class="award-entry">
+      <span class="award-name">David Gitlitz Emerging Scholar Award, Society for Crypto-Judaic Studies</span>
+      <span class="award-year">2025</span>
+    </div>
+    <div class="award-entry">
+      <span class="award-name">John L. Nau III Ph.D. Fellowship, University of Houston</span>
+      <span class="award-year">2025</span>
+    </div>
+    <div class="award-entry">
+      <span class="award-name">Research Grant, Texas Jewish Historical Society ($2,500)</span>
+      <span class="award-year">2024</span>
+    </div>
+    <div class="award-entry">
+      <span class="award-name">Mellon Research Scholars Fellowship ($5,000)</span>
+      <span class="award-year">2020</span>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH & PUBLIC HISTORY EXPERIENCE -->
+<section class="cv-section">
+  <div class="container">
+    <div class="section-label">Research &amp; Public History Experience</div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Doctoral Researcher</span>
+        <span class="appt-date">2021–2026</span>
+      </div>
+      <div class="appt-org">University of Houston</div>
+      <ul class="appt-bullets">
+        <li>Conducted archival and oral history research on Sephardic diaspora, colonial religious regulation, migration, and community memory across the Atlantic World and U.S.–Mexico borderlands.</li>
+        <li>Designed and conducted consent-based oral histories with community narrators and integrated testimony with institutional, genealogical, and print archives.</li>
+        <li>Worked in repositories and special collections in Texas, New Mexico, and California, including materials documenting the Spanish Atlantic, New Spain, and modern Jewish life in the borderlands.</li>
+      </ul>
+    </div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Graduate Coordinator and Summer Fellow</span>
+        <span class="appt-date">Summer 2022</span>
+      </div>
+      <div class="appt-org">Cougar Initiative to Engage (CITE), University of Houston</div>
+      <ul class="appt-bullets">
+        <li>Supervised approximately thirty undergraduates completing public history projects; mentored research, writing, oral history, and project development.</li>
+        <li>Developed assessment tools and provided individualized feedback to support student learning and project completion.</li>
+      </ul>
+    </div>
+
+    <div class="appt-entry">
+      <div class="appt-header">
+        <span class="appt-title">Abstract Writer</span>
+        <span class="appt-date">2021</span>
+      </div>
+      <div class="appt-org">Center for Public History, University of Houston</div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVAL RESEARCH -->
+<section class="cv-section">
+  <div class="container">
+    <div class="section-label">Selected Archival Research</div>
+
+    <div class="archive-entry">
+      <p class="archive-region">Spanish Atlantic and New Spain</p>
+      <p class="archive-list">Nettie Lee Benson Latin American Collection; Huntington Library; Gilcrease Museum; University of Texas Rio Grande Valley Special Collections</p>
+    </div>
+
+    <div class="archive-entry">
+      <p class="archive-region">Borderlands and Jewish History</p>
+      <p class="archive-list">Dolph Briscoe Center for American History; University of New Mexico Center for Southwest Research; Fray Angélico Chávez History Library; New Mexico Photo Archives</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING FIELDS -->
+<section class="cv-section">
+  <div class="container">
+    <div class="section-label">Teaching Fields</div>
+    <div class="fields-list">
+      <span class="field-tag">Atlantic World</span>
+      <span class="field-tag">Colonial Latin America and New Spain</span>
+      <span class="field-tag">Colonial North America</span>
+      <span class="field-tag">Jewish and Sephardic History</span>
+      <span class="field-tag">U.S.–Mexico Borderlands</span>
+      <span class="field-tag">U.S. History to 1877</span>
+      <span class="field-tag">Oral History and Public History</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="cv-section">
+  <div class="container">
+    <div class="section-label">Teaching &amp; Research Skills</div>
+
+    <div class="skill-group">
+      <p class="skill-label">Course design</p>
+      <p class="skill-items">Asynchronous online and face-to-face instruction; scaffolded writing; primary-source analysis; discussion and assessment design</p>
+    </div>
+    <div class="skill-group">
+      <p class="skill-label">Digital pedagogy</p>
+      <p class="skill-items">Canvas, Blackboard, Perusall, McGraw Hill Connect, and Top Hat</p>
+    </div>
+    <div class="skill-group">
+      <p class="skill-label">Research methods</p>
+      <p class="skill-items">Archival research, oral history, community-engaged research, public history, and qualitative analysis</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="cv-section" id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <p style="margin:0 0 6px;"><a href="mailto:nlkatz@cougarnet.uh.edu" style="color:var(--accent);font-weight:600;">nlkatz@cougarnet.uh.edu</a></p>
+    <p style="margin:0 0 6px;"><a href="mailto:nancy@comkatz.com" style="color:var(--accent);font-weight:600;">nancy@comkatz.com</a></p>
+    <p style="margin:0 0 6px;"><a href="tel:+12816390167" style="color:var(--accent);font-weight:600;">(281) 639-0167</a></p>
+    <p style="margin:0;color:var(--muted);">Huntsville, Texas</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> Nancy Katz. All rights reserved.
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
